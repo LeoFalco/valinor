@@ -189,6 +189,10 @@ async function lancarItem (prisma, { idAtendimento, itemInput }) {
 }
 
 async function abrirAtendimento (prisma, atendimentoInput) {
+  console.log('abrir atendimento')
+
+  console.log(JSON.stringify(atendimentoInput, undefined, 2))
+
   const idCliente = atendimentoInput.idCliente || null
   delete atendimentoInput.idCliente
 
@@ -245,7 +249,8 @@ async function abrirAtendimento (prisma, atendimentoInput) {
       }
     })
   } else if (idCliente) { // somente cliente
-    const cliente = prisma.cliente.findOne({
+    console.log('aqui')
+    const cliente = await prisma.cliente.findOne({
       where: {
         id: idCliente
       },
@@ -261,6 +266,9 @@ async function abrirAtendimento (prisma, atendimentoInput) {
     if (!cliente) {
       throw new Error('cliente [Id ' + idCliente + '] não encontrado')
     }
+
+    console.log(cliente)
+    console.log(cliente.endereco)
 
     const createOrUpdate = {
       ...atendimento,

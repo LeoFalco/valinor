@@ -15,8 +15,6 @@ function createServer () {
 const server = createServer()
 
 async function startServer () {
-  console.log(Object.keys(server))
-
   return server.start(() => console.log('🚀 Server ready at: ' + appUrl))
 }
 
