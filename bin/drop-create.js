@@ -1,6 +1,6 @@
 const mysql = require('promise-mysql')
 const spawn = require('cross-spawn')
-const { databaseCredentials: credentials } = require('./config')
+const { databaseCredentials: credentials } = require('../src/config')
 const { createTableMigration, dropTables, tableNames } = require('./datasource')
 
 async function dropCreate () {

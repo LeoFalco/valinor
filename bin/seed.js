@@ -1,4 +1,4 @@
-const { mutate } = require('./client')
+const { mutate } = require('../src/graphql/client')
 const {
   INSERIR_FINALIZADORA,
   INSERIR_PRODUTO,
@@ -8,7 +8,7 @@ const {
   LANCAR_PAGAMENTO,
   ALTERAR_STATUS,
   AUDITAR_EARQUIVAR
-} = require('./query')
+} = require('../src/graphql/query')
 
 const credito = {
   finalizadoraInput: {

@@ -1,6 +1,5 @@
 const mysql = require('promise-mysql')
-const spawn = require('cross-spawn')
-const { databaseCredentials: credentials } = require('./config')
+const { databaseCredentials: credentials } = require('../src/config')
 const { truncateTables, tableNames } = require('./datasource')
 
 async function cleanData () {
@@ -8,7 +7,7 @@ async function cleanData () {
     const con = await mysql.createConnection({ ...credentials })
 
     let tables = await tableNames(con, credentials.database)
-    tables = tables.filter(tableName => tableName != '_Migration')
+    tables = tables.filter(tableName => tableName !== '_Migration')
 
     await truncateTables(con, tables)
 

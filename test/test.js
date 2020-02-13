@@ -1,5 +1,5 @@
 const { startServer, stopServer } = require('../src/server')
-const { query, mutate } = require('../src/utils/client')
+const { query, mutate } = require('../src/graphql/client')
 
 const {
   INSERIR_FINALIZADORA,
@@ -11,7 +11,7 @@ const {
   ALTERAR_STATUS,
   AUDITAR_EARQUIVAR,
   ATENDIMENTOS
-} = require('../src/utils/query')
+} = require('../src/graphql/query')
 
 let server
 beforeAll(async () => {

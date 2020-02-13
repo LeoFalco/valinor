@@ -24,9 +24,9 @@
     "postinstall": "npm install rimraf prisma2 -g && prisma2 generate",
     "generate-schema": "prisma2 migrate save --name init --experimental",
     "migrate": "prisma2 migrate up --experimental --verbose",
-    "drop-create": "node src/utils/drop-create.js",
-    "clean-data": "node src/utils/clean-data.js",
-    "seed": "node src/utils/seed.ts"
+    "drop-create": "node bin/drop-create.js",
+    "clean-data": "node bin/clean-data.js",
+    "seed": "node bin/seed.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.19.2",

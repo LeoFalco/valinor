@@ -3,8 +3,6 @@ async function list (prisma) {
 }
 
 async function save (prisma, { clienteInput, enderecoInput }) {
-  console.log(clienteInput)
-  console.log(enderecoInput)
 
   const enderecoInserido = await prisma.endereco.upsert({
     create: {
