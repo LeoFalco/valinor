@@ -9,9 +9,6 @@ const Client = new ApolloClient({
   link: createHttpLink({ uri: appUrl, fetch: nodeFetch })
 })
 
-
-Client.mutate
-Object.keys(Client)
 module.exports = {
-  Client
+  ...Client
 }

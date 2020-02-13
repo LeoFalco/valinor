@@ -1,9 +1,4 @@
-// const { mutate } = require('./client')
-const { ApolloClient } = require('apollo-client')
-const { InMemoryCache } = require('apollo-cache-inmemory')
-const { createHttpLink } = require('apollo-link-http')
-const nodeFetch = require('node-fetch')
-const { appUrl } = require('./config')
+const { mutate } = require('./client')
 const {
   INSERIR_FINALIZADORA,
   INSERIR_PRODUTO,
@@ -14,21 +9,6 @@ const {
   ALTERAR_STATUS,
   AUDITAR_EARQUIVAR
 } = require('./query')
-
-const Client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: createHttpLink({ uri: appUrl, fetch: nodeFetch })
-})
-
-const mutate = Client.mutate
-
-Object.keys(Client)
-
-/*
-module.exports = {
-  Client
-}
-*/
 
 const credito = {
   finalizadoraInput: {

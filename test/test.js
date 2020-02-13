@@ -1,4 +1,6 @@
-const { server } = require('../src/index')
+const { startServer, stopServer } = require('../src/server')
+const { query, mutate } = require('../src/utils/client')
+
 const {
   INSERIR_FINALIZADORA,
   INSERIR_PRODUTO,
@@ -7,31 +9,29 @@ const {
   LANCAR_ITEM,
   LANCAR_PAGAMENTO,
   ALTERAR_STATUS,
-  AUDITAR_EARQUIVAR
+  AUDITAR_EARQUIVAR,
+  ATENDIMENTOS
 } = require('../src/utils/query')
 
-const { createTestClient } = require('apollo-server-testing')
-
-const { query, mutate } = createTestClient(server)
-
-query({
-  query: GET_USER,
-  variables: { id: 1 }
+let server
+beforeAll(async () => {
+  server = await startServer()
 })
 
-mutate({
-  mutation: UPDATE_USER,
-  variables: { id: 1, email: 'nancy@foo.co' }
+afterAll(async () => {
+  if (server) {
+    await stopServer(server)
+  }
 })
 
-// async function main () {
-//   const serverReady = await server
+describe('Server', function () {
+  describe('Atendimentos', function () {
+    it('todos', async function () {
+      const result = await query({
+        query: ATENDIMENTOS
+      })
 
-//   describe('Array', function () {
-//     describe('#indexOf()', function () {
-//       it('should return -1 when the value is not present', function () {
-//         expect([1, 2]).toContain(1)
-//       })
-//     })
-//   })
-// }
+      console.log(result)
+    })
+  })
+})

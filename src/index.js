@@ -1,20 +1,7 @@
-const { GraphQLServer } = require('graphql-yoga')
-const { PrismaClient } = require('@prisma/client')
-const { Query, Mutation } = require('./graphql/resolvers')
-const { appUrl } = require('./utils/config')
+const { startServer } = require('./server')
 
-async function start () {
-  const prisma = new PrismaClient()
-  const server = new GraphQLServer({
-    typeDefs: 'src/graphql/schema.graphql',
-    resolvers: { Query, Mutation },
-    context: { prisma }
+startServer()
+  .catch(error => {
+    console.error(error)
+    process.exit(-1000)
   })
-  await server.start(() => console.log('🚀 Server ready at: ' + appUrl))
-}
-
-const server = start()
-
-module.exports = {
-  server
-}

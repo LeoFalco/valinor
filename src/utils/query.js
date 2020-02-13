@@ -38,8 +38,51 @@ mutation inserirCliente(
   }
 }
 `
+const ATENDIMENTOS = gql`query {
+  atendimentos {
+    id
+    dataAbertura
+    dataEncerramento
+    status
+    valorPedido
+    valorEntrega
+    valorTotal
+    cliente {
+      id
+      nome
+    }
+    enderecoEntrega {
+      id
+      logradouro
+      bairro
+      cidade
+      cep
+    }
+    itens {
+      id
+      quantidade
+      precoUnitario
+      valor
+      produto {
+        id
+        descricao
+        codigo
+      }
+    }
+    pagamentos {
+      id
+      valor
+      troco
+      finalizadora {
+        id
+        descricao
+      }
+    }
+  }
+}
+`
 
-const ABRIR_ATENDIMENTO = gql`# Write your query or mutation here
+const ABRIR_ATENDIMENTO = gql`
 mutation abrirAtendimento($atendimentoInput: AtendimentoInput!) {
   abrirAtendimento(atendimentoInput: $atendimentoInput) {
     id
@@ -198,5 +241,6 @@ module.exports = {
   LANCAR_ITEM,
   LANCAR_PAGAMENTO,
   ALTERAR_STATUS,
-  AUDITAR_EARQUIVAR
+  AUDITAR_EARQUIVAR,
+  ATENDIMENTOS
 }
