@@ -225,6 +225,15 @@ mutation auditarEArquivar($idAtendimento: String!) {
 }
 `
 
+const PRODUTOS = gql`
+query {
+  produtos {
+    id
+    descricao
+  }
+}
+`
+
 const ALTERAR_STATUS = gql`
 mutation alterarStatus($idAtendimento: String!, $status: Status!) {
   alterarStatus(idAtendimento: $idAtendimento, status: $status) {
@@ -242,5 +251,6 @@ module.exports = {
   LANCAR_PAGAMENTO,
   ALTERAR_STATUS,
   AUDITAR_EARQUIVAR,
-  ATENDIMENTOS
+  ATENDIMENTOS,
+  PRODUTOS
 }
